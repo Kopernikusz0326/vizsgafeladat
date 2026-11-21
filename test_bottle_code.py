@@ -1,4 +1,4 @@
-from wine_spirits_culture import is_valid_bottle_code, Beverage
+from wine_spirits_culture import is_valid_bottle_code, Beverage, Wine, Palinka
 
 
 def test_ervenyes_azonosito():
@@ -21,3 +21,28 @@ def test_kostolo_ar_kiszamitasa():
     ital = Beverage("ITAL-1234", "Egri Bikavér", "Eger", 1000, 10000)
 
     assert ital.calculate_tasting_price(100) == 1000
+
+
+def test_bor_kostolo_ar():
+    bor = Wine("ITAL-1234", "Egri Bikavér", "Eger", 1000, 10000, "Kékfrankos", 2020)
+
+    assert bor.calculate_tasting_price() == 1000
+
+
+def test_palinka_kostolo_ar():
+    palinka = Palinka("ITAL-1235", "Szilvapálinka", "Szatmár", 1000, 10000, "Szilva")
+
+    assert palinka.calculate_tasting_price() == 200
+
+
+def test_bor_leirasa():
+    bor = Wine("ITAL-1234", "Egri Bikavér", "Eger", 1000, 10000, "Kékfrankos", 2020)
+
+    assert "Kékfrankos" in bor.describe()
+    assert "2020" in bor.describe()
+
+
+def test_palinka_leirasa():
+    palinka = Palinka("ITAL-1235", "Szilvapálinka", "Szatmár", 1000, 10000, "Szilva")
+
+    assert "Szilva" in palinka.describe()
